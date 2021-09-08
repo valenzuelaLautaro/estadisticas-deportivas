@@ -1,5 +1,4 @@
-  (
-    # Estadísticas Deportivas
+# Estadísticas Deportivas
 
 ## Descripción
 
