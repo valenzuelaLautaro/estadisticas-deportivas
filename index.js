@@ -62,19 +62,28 @@ console.log(resultadoFinal())
 
 const goleador = () => {
   let masPuntos = 0
-  for(let jugador in puntosEquipoA.puntos){
-    if(jugador > masPuntos){
-      masPuntos = jugador
+  let jugador
+  const valoresA = Object.values(puntosEquipoA.puntos)
+  const clavesA = Object.keys(puntosEquipoA.puntos)
+  const valoresB = Object.values(puntosEquipoB.puntos)
+  const clavesB = Object.keys(puntosEquipoB.puntos)
+
+  for(let i = 0; i < valoresA.length; i++){
+    if(valoresA[i] > masPuntos){
+      masPuntos = valoresA[i]
+      jugador = clavesA[i]
     }
   }
-  for(let jugador in puntosEquipoB.puntos){
-    if(jugador > masPuntos){
-      masPuntos = jugador
+  for(let i = 0; i < valoresA.length; i++){
+    if(valoresB[i] > masPuntos){
+      masPuntos = valoresB[i]
+      jugador = clavesB[i]
     }
   }
-  return masPuntos
+  return jugador
 }
 
+console.log(goleador())
 
 const distribucionDePuntaje = (registro) => {
   let dobles = 0
@@ -88,7 +97,8 @@ const distribucionDePuntaje = (registro) => {
     }
   })
   return {
-    triples, dobles
+    triples, 
+    dobles
   }
 }
 const distribucionPartido = distribucionDePuntaje(partido)
