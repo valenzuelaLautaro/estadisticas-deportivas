@@ -44,10 +44,10 @@ const puntosEquipoB = puntosEquipo(partido, equipoB)
 
 console.log(puntosEquipoA, puntosEquipoB)
 
-const puntosB = (puntos) => {
+const puntosA = (puntos) => {
   return puntos.total
 }
-const puntosA = (puntos) => {
+const puntosB = (puntos) => {
   return puntos.total
 }
 
@@ -56,33 +56,30 @@ const resultadoFinal = () => {
     equipoA : puntosA(puntosEquipoA),
     equipoB : puntosB(puntosEquipoB)
   }
-  return 'Equipo A ' + resultado.equipoA + ' vs ' + resultado.equipoB + ' Equipo B'
+  return 'Local ' + resultado.equipoA + ' vs ' + resultado.equipoB + ' Visitante'
 }
 console.log(resultadoFinal())
 
 const goleador = () => {
   let masPuntos = 0
   let jugador
-  const valoresA = Object.values(puntosEquipoA.puntos)
-  const clavesA = Object.keys(puntosEquipoA.puntos)
-  const valoresB = Object.values(puntosEquipoB.puntos)
-  const clavesB = Object.keys(puntosEquipoB.puntos)
+  const valoresA = Object.entries(puntosEquipoA.puntos)
+  const valoresB = Object.entries(puntosEquipoB.puntos)
 
   for(let i = 0; i < valoresA.length; i++){
-    if(valoresA[i] > masPuntos){
-      masPuntos = valoresA[i]
-      jugador = clavesA[i]
+    if(valoresA[i][1] > masPuntos){
+      masPuntos = valoresA[i][1]
+      jugador = valoresA[i][0]
     }
   }
   for(let i = 0; i < valoresA.length; i++){
-    if(valoresB[i] > masPuntos){
-      masPuntos = valoresB[i]
-      jugador = clavesB[i]
+    if(valoresB[i][1] > masPuntos){
+      masPuntos = valoresB[i][1]
+      jugador = valoresB[i][0]
     }
   }
-  return jugador
+  return 'Goleador del partido: ' + jugador + ' con ' + masPuntos + ' puntos.'
 }
-
 console.log(goleador())
 
 const distribucionDePuntaje = (registro) => {
@@ -96,11 +93,7 @@ const distribucionDePuntaje = (registro) => {
       dobles++
     }
   })
-  return {
-    triples, 
-    dobles
-  }
+  return 'Triples: ' + triples + '. Dobles: ' + dobles
 }
 const distribucionPartido = distribucionDePuntaje(partido)
-console.log('Triples: ' + distribucionPartido.triples + '. Dobles: ' + distribucionPartido.dobles + '.')
-
+console.log(distribucionPartido)
