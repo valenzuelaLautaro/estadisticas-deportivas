@@ -9,13 +9,8 @@ const equipoA = archivo('basket/equipo-A.txt', '\n')
 const equipoB = archivo('basket/equipo-B.txt', '\n')
 const partido = archivo('basket/partido.log', '\n')
 
-// {
-//   apellido o nombre: puntos,
-//   apellido o nombre: puntos
-// }
 const puntosEquipo = (registro, equipo) => {
   const registroEquipo = registro.filter(anotacion => {
-    // "APELLIDO,TIPO"
     let apellido = anotacion.split(',')[0]
     let apellidos = equipo.map(nombreCompleto => nombreCompleto.split(" ")[1])
     
@@ -41,24 +36,19 @@ const puntosEquipo = (registro, equipo) => {
 
 const puntosEquipoA = puntosEquipo(partido, equipoA)
 const puntosEquipoB = puntosEquipo(partido, equipoB)
-
 console.log(puntosEquipoA, puntosEquipoB)
 
-const puntosA = (puntos) => {
-  return puntos.total
+const puntos = (equipo) => {
+  return equipo.total
 }
-const puntosB = (puntos) => {
-  return puntos.total
-}
-
-const resultadoFinal = () => {
+const resultadoFinal = (equipo1, equipo2) => {
   const resultado = {
-    equipoA : puntosA(puntosEquipoA),
-    equipoB : puntosB(puntosEquipoB)
+    equipoA : puntos(equipo1),
+    equipoB : puntos(equipo2)
   }
-  return 'Local ' + resultado.equipoA + ' vs ' + resultado.equipoB + ' Visitante'
+  return resultado
 }
-console.log(resultadoFinal())
+console.log(resultadoFinal(puntosEquipoA, puntosEquipoB))
 
 const goleador = () => {
   let masPuntos = 0
