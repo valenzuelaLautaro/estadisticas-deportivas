@@ -68,7 +68,10 @@ const goleador = () => {
       jugador = valoresB[i][0]
     }
   }
-  return 'Goleador del partido: ' + jugador + ' con ' + masPuntos + ' puntos.'
+  return {
+    jugador,
+    masPuntos
+  }
 }
 console.log(goleador())
 
@@ -83,7 +86,10 @@ const distribucionDePuntaje = (registro) => {
       dobles++
     }
   })
-  return 'Triples: ' + triples + '. Dobles: ' + dobles
+  return {
+    triples,
+    dobles
+  }
 }
 const distribucionPartido = distribucionDePuntaje(partido)
 console.log(distribucionPartido)
